@@ -11,12 +11,18 @@ class loginPage(SeleniumDriver):
         self.driver = driver
 
     #locators
+    _signInBtn = "Sign In"
+    #"//header[@id='global-header']/div/div/div/a[data-spec='global-header-quick-link'][class='eds-global-header__quick-link eds-show-up-md']/span[class='eds-show-up-md'][text()='Sign In']"
+
     _emailTxtBox = "[name='email']"
     _submitBtn = "[data-automation='signup-submit-button']"
     _user = "ignacio+test@evbqa.com"
     _passTxtBox = "[data-automation='signup-password-field']"
     _pass = "Eventbrite21!"
     _loginBtn = "[data-automation='signup-submit-button']"
+
+    def clickSignInButton(self):
+        self.elementClick(self._signInBtn, "link")
 
     def enterEmail(self, email):
         self.sendKeys(email, self._emailTxtBox, "css")
@@ -31,6 +37,7 @@ class loginPage(SeleniumDriver):
         self.elementClick(self._loginBtn, "css")
 
     def login(self, email, password):
+        self.clickSignInButton()
         self.enterEmail(email)
         self.clickSubmitButton()
         self.enterPassword(password)
